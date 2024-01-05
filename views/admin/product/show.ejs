@@ -1,0 +1,325 @@
+<%- include ('../layout/header.ejs') %>
+<style>
+   html body .label-info {
+   background: #01b2ac !important;
+   }     
+</style>
+<!-- <% if(typeof error != 'undefined'){ %>
+   <div style="text-align: center;"><p><%= error %></p></div>
+   <% } %> -->
+   <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+<div class="row justify-content-center" style="margin:20px">
+   
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+  
+   
+    <div class="card  box-shadow-0">
+      <div class="card-header d-flex justify-content-between" style="padding-top:15px">
+         <h4 class="card-title mb-1">Add Product Details</h4>
+         <a href="/product/" class="btn btn-primary">Back</a></div>   
+         <form  method="post" action="/product/create" enctype="multipart/form-data" >
+        <div class="card-body pt-0" >
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" >
+                       <label>Name<span class="required_">*</span></label>
+                       <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" required>
+                    </div>
+                 </div>
+               <div class="col-md-4">
+                  <div class="form-group" >
+                     <label>Select Category <span class="required_">*</span></label>
+                     <select class="form-control" name="category_id" id="category_id" style="height:47px" required>
+                        <option value="">-select category-</option>
+                        <% category.forEach(function(course){ %>
+                        <option value="<%= course._id %>"><%= course.category %></option>
+                        <% }) %>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group" >
+                     <label>Select Sub Category <span class="required_">*</span></label>
+                     <select class="form-control" name="sub_category" id="sub_category" style="height:47px"  required>
+                        <option value="">-select sub categpry-</option>     
+                        <% subModel.forEach(function(lavel){ %>
+                        <option value="<%= lavel._id %>"><%= lavel.sub_category %></option>
+                        <% }) %>
+                     </select>
+                  </div>
+               </div>
+
+               <div class="col-md-4">
+                <div class="form-group" >
+                   <label>Select Sub Sub Category <span class="required_">*</span></label>
+                   <select class="form-control" name="sub_sub_category" id="sub_sub_category" style="height:47px"  required>
+                      <option value="">-select sub sub categpry-</option>     
+                      <% subSubModel.forEach(function(lavel){ %>
+                      <option value="<%= lavel._id %>"><%= lavel.sub_sub_category %></option>
+                      <% }) %>
+                   </select>
+                </div>
+             </div>
+
+             <div class="col-md-12">
+                <div class="form-group" >
+                   <label>Search Tags<span class="required_">*</span></label>
+                   <input type="text" class="form-control" name="tags" id="tags" placeholder="Enter search tags" required>
+                </div>
+             </div>
+
+               <div class="col-md-12">
+                  <div class="form-group" >
+                     <label>Discription<span class="required_">*</span></label>
+                     <textarea type="datetime-local" class="form-control editor1" name="desc"  required></textarea>
+                  </div>
+               </div>
+
+               <div class="col-md-12">
+                <div class="form-group" >
+                   <label>Youtube Video Link<span class="required_">*</span></label>
+                   <input type="text" class="form-control" name="youtube_video_link" placeholder="Enter Link" required>
+                </div>
+             </div>
+
+             <div class="col-md-6">
+                <label for="imageInput1" class="form-label">Select Image 1</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control image-input" name="image1" id="imageInput1" accept="image/*">
+                    <label class="input-group-text" for="imageInput1">Choose</label>
+                </div>
+                <div class="input-group mb-3">
+                    <img src="#" alt="Selected Image" class="img-fluid preview-image" style="max-height: 100px; display: none;">
+                    <input type="text" class="form-control image-alt" name="alt1" placeholder="Alt text for the image">
+                </div>
+            </div>
+        
+            <div class="col-md-6">
+                <label for="imageInput2" class="form-label">Select Image 2</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control image-input" name="image2" id="imageInput2" accept="image/*">
+                    <label class="input-group-text" for="imageInput2">Choose</label>
+                </div>
+                <div class="input-group mb-3">
+                    <img src="#" alt="Selected Image" class="img-fluid preview-image" style="max-height: 100px; display: none;">
+                    <input type="text" class="form-control image-alt" name="alt2" placeholder="Alt text for the image">
+                </div>
+            </div><hr>
+            <div class="col-md-6">
+                <label for="imageInput1" class="form-label">Select Image 3</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control image-input" name="image3" id="imageInput1" accept="image/*">
+                    <label class="input-group-text" for="imageInput1">Choose</label>
+                </div>
+                <div class="input-group mb-3">
+                    <img src="#" alt="Selected Image" class="img-fluid preview-image" style="max-height: 100px; display: none;">
+                    <input type="text" class="form-control image-alt" name="alt3" placeholder="Alt text for the image">
+                </div>
+            </div>
+        
+            <div class="col-md-6">
+                <label for="imageInput2" class="form-label">Select Image 4</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control image-input" name="image4" id="imageInput2" accept="image/*">
+                    <label class="input-group-text" for="imageInput2">Choose</label>
+                </div>
+                <div class="input-group mb-3">
+                    <img src="#" alt="Selected Image" class="img-fluid preview-image" style="max-height: 100px; display: none;">
+                    <input type="text" class="form-control image-alt" name="alt4" placeholder="Alt text for the image">
+                </div>
+            </div>
+
+            <br><h3>Page Promotion (SEO)</h3>
+                 
+                <div class="col-md-12 pt-15" style="margin-top: 15px;">
+                    <div class="form-group" >
+                       <label>Meta Tag Title<span class="required_">*</span></label>
+                       <input type="text" class="form-control" name="meta_title" id="tags" placeholder="Enter meta title" required>
+                    </div>
+                 </div>
+
+                 <div class="col-md-12">
+                    <div class="form-group" >
+                       <label>Meta Tag Discription<span class="required_"></span></label>
+                       <textarea type="datetime-local" class="form-control " name="meta_desc"  ></textarea>
+                    </div>
+                 </div>
+
+
+                 <div class="col-md-12">
+                    <div class="form-group" >
+                       <label>Meta Keyword <span class="required_"></span></label>
+                       <textarea type="datetime-local" class="form-control " name="meta_keyword"  ></textarea>
+                    </div>
+                 </div>
+
+               
+
+                 <div class="col-md-12 pt-15" style="margin-top: 15px;">
+                    <div class="form-group" >
+                       <label>SEO URL<span class="required_"></span></label>
+                       <input type="text" class="form-control" name="seo_url" id="tags" placeholder="Enter seo url" >
+                    </div>
+                 </div>
+
+
+                 <div class="col-md-12">
+                    <div class="form-group" >
+                       <label>Dynamic script for HEAD tag <span class="required_"></span></label>
+                       <textarea type="datetime-local" class="form-control " name="head_tag"  ></textarea>
+                    </div>
+                 </div>
+
+
+                 <div class="col-md-12">
+                    <div class="form-group" >
+                       <label>Dynamic script for BODY tag <span class="required_"></span></label>
+                       <textarea type="datetime-local" class="form-control " name="body_tag"  ></textarea>
+                    </div>
+                 </div>
+
+                 <br><h3>Client Speak</h3>
+                  <div class="container-fluid golu" style="display: contents;">
+                 <div class="col-md-12 pt-15" style="margin-top: 15px;">
+                    <div class="form-group" >
+                
+                       <input type="text" class="form-control" name="youtube_video_link[]" id="tags" placeholder="Enter Youtube Video Link" >
+                    </div>
+                 </div>
+
+                 <div class="col-md-5 ">
+                    <div class="form-group" >
+                       <input type="text" class="form-control" name="youtube_video_title[]" id="tags" placeholder="Enter Video title" >
+                    </div>
+                 </div>
+
+                 <div class="col-md-5 " >
+                    <div class="form-group" >
+                       <input type="text" class="form-control" name="youtube_video_desc[]" id="tags" placeholder="Enter Video Discription" >
+                    </div>
+                 </div>
+
+                 <div class="col-md-2 ">
+                    <input type="text" class="form-control btn btn-success"  value="Add More" onclick="appendData()">
+                </div>
+            </div>
+
+
+                <div class="col-md-12">
+                    <div class="form-group" >
+                       <label>Footer Discription<span class="required_"></span></label>
+                       <textarea  class="form-control editor1" name="footer_desc"  ></textarea>
+                    </div>
+                 </div>
+
+                  </div>
+                  <br><button type="submit" class="btn btn-primary">Submit</button>
+               </form>
+                </div>
+               
+              </div>
+<!-- ///////////////////////////// -->
+              <br>
+           
+                       
+                  
+                 </div>
+                  </div>
+                  </div>
+                  </div>
+        
+        
+        
+        
+<!-- /////////// -->
+
+
+   <script>
+    let delete_num = 1;
+    function appendData(){
+      
+        let count = delete_num+1;
+        var html = `
+            <div class="col-md-12 pt-15 delete_${delete_num}" >
+                    <div class="form-group" >
+                
+                       <input type="text" class="form-control" name="youtube_video_link[]" id="tags" placeholder="Enter Youtube Video Link" >
+                    </div>
+                 </div>
+
+                 <div class="col-md-5  delete_${delete_num}">
+                    <div class="form-group" >
+                       <input type="text" class="form-control" name="youtube_video_title[]" id="tags" placeholder="Enter Video title" >
+                    </div>
+                 </div>
+
+                 <div class="col-md-5 delete_${delete_num} " >
+                    <div class="form-group" >
+                       <input type="text" class="form-control" name="youtube_video_desc[]" id="tags" placeholder="Enter Video Discription" >
+                    </div>
+                 </div>
+
+                 <div class="col-md-2 delete_${delete_num}" >
+                   <button type="button"  onclick="delete_('delete_${delete_num}')" class="btn btn-danger">Remove -</button></div>`;
+
+    $('.golu').append(html);
+
+    delete_num++;
+    }
+
+    function delete_(id){
+       $('.'+id).remove();
+    }
+    function uploadVideo(value,id){
+        if(value == 'upload'){
+            $('#'+id).html(`
+                            <div class="form-group" >
+                               <label>Upload Video<span class="required_">*</span></label>
+                               <input type="file" class="form-control" name="lession_video[]" id="inputName" required>
+                            </div>
+                         `);
+        }else{
+            $('#'+id).html(``);
+        }
+    }
+   </script>
+
+<script>
+   CKEDITOR.replaceAll('editor1');
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Add an event listener to all file inputs with the class 'image-input'
+    document.querySelectorAll('.image-input').forEach(function (input) {
+        input.addEventListener('change', function (e) {
+            // Get the selected file
+            const file = e.target.files[0];
+
+            // Find the corresponding preview image and alt text input
+            const parentDiv = e.target.closest('.col-md-6');
+            const previewImage = parentDiv.querySelector('.preview-image');
+            const imageAlt = parentDiv.querySelector('.image-alt');
+
+            // Display the selected image in the preview area
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // If no file is selected, hide the preview area
+                previewImage.style.display = 'none';
+            }
+
+            // Set alt text for the image
+            imageAlt.value = file ? '' : '';
+        });
+    });
+</script>
+
+<%- include ('../layout/footer.ejs') %>
